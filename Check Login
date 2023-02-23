@@ -1,0 +1,18 @@
+------------ Model -------------------
+protected $table = 'user_reru';
+
+------------ Route -------------------
+Route::get('/login', [App\Http\Controllers\UserRERUController::class, 'login'])->name('login');
+Route::post('/check_login', [App\Http\Controllers\UserRERUController::class, 'check_login'])->name('check_login');
+
+------------ Controller --------------
+use App\Models\UserRERU;
+public function check_login(Request $request){
+        $UserRERU = UserRERU::where('UserName',$request->username)
+                            ->where('Value',$request->password)->first();
+        if($UserRERU){
+            echo "OK";
+        }else{
+            echo "Error";
+        }
+}
